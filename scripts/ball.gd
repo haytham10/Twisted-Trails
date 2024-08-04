@@ -22,9 +22,9 @@ func _physics_process(delta):
 
 	# Set horizontal velocity based on the current direction
 	if moving_left:
-		velocity.x = -SPEED * 20
+		velocity.x = -SPEED
 	else:
-		velocity.x = SPEED * 20
+		velocity.x = SPEED
 
 	# Move the character
 	move_and_slide()

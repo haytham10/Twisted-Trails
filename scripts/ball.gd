@@ -1,34 +1,33 @@
 extends CharacterBody2D
 
-@export var max_speed: float = 100.0  # Maximum speed of the ball
-@export var rotation_speed: float = 1.0  # Speed of rotation
-@export var gravity: float = 300.0  # Downward force to simulate gravity
+@export var max_speed: float = 200.0  # Maximum speed of the ball
+@export var rotation_speed: float = 1.2  # Speed of rotation
+@export var gravity: float = 200.0  # Downward force to simulate gravity
 
 var velocity_x: float = 0.0
 var moving_left: bool = false
+var moving_right: bool = false
 
 func _ready():
-	# Start with a constant downward velocity
+	# Initialize the downward velocity to start rolling immediately
 	velocity.y = gravity
 
-func _process(delta):
+func _process(_delta):
 	# Toggle direction on key press
 	if Input.is_action_just_pressed("ui_left"):
 		moving_left = true
+		moving_right = false  # Reset other direction
 	elif Input.is_action_just_pressed("ui_right"):
-		moving_left = false
+		moving_right = true
+		moving_left = false  # Reset other direction
 
+func _physics_process(_delta):
 	# Set target velocity based on direction
 	if moving_left:
 		velocity_x = -max_speed
-	else:
+	elif moving_right:
 		velocity_x = max_speed
 
-	# Calculate the angle for smooth turning
-	var angle_direction = -1 if moving_left else 1
-	rotation += angle_direction * rotation_speed * delta
-
-func _physics_process(delta):
 	# Apply horizontal velocity
 	velocity.x = velocity_x
 
@@ -37,7 +36,3 @@ func _physics_process(delta):
 
 	# Move the ball
 	move_and_slide()
-
-	# Adjust position based on velocity to simulate turning
-	var forward_movement = Vector2(-sin(rotation), cos(rotation)) * velocity.y * delta
-	global_position += forward_movement

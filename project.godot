@@ -16,8 +16,9 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 [display]
 
-window/size/viewport_width=390
-window/size/viewport_height=844
+window/size/viewport_width=400
+window/size/viewport_height=850
+window/size/initial_position=Vector2i(370, 0)
 
 [editor]
 

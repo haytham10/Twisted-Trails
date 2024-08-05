@@ -1,39 +1,43 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 180.0
-const ACCELERATION = 1  # Controls how quickly the ball accelerates to max speed
-const TURN_ANGLE = 0.1  # Adjust for tighter or wider arcs
+@export var max_speed: float = 100.0  # Maximum speed of the ball
+@export var rotation_speed: float = 1.0  # Speed of rotation
+@export var gravity: float = 300.0  # Downward force to simulate gravity
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.1
+var velocity_x: float = 0.0
+var moving_left: bool = false
 
-# Track the current velocity
-var current_velocity_x = 0.0
+func _ready():
+	# Start with a constant downward velocity
+	velocity.y = gravity
 
 func _process(delta):
-	# Check for input on the left or right side of the screen
-	if Input.is_action_just_pressed("move_left"):
-		current_velocity_x = -MAX_SPEED
-	elif Input.is_action_just_pressed("move_right"):
-		current_velocity_x = MAX_SPEED
+	# Toggle direction on key press
+	if Input.is_action_just_pressed("ui_left"):
+		moving_left = true
+	elif Input.is_action_just_pressed("ui_right"):
+		moving_left = false
 
-	# Gradually increase or decrease the speed to the target velocity
-	if current_velocity_x < 0:
-		current_velocity_x = max(-MAX_SPEED, current_velocity_x - ACCELERATION * delta)
-	elif current_velocity_x > 0:
-		current_velocity_x = min(MAX_SPEED, current_velocity_x + ACCELERATION * delta)
+	# Set target velocity based on direction
+	if moving_left:
+		velocity_x = -max_speed
+	else:
+		velocity_x = max_speed
+
+	# Calculate the angle for smooth turning
+	var angle_direction = -1 if moving_left else 1
+	rotation += angle_direction * rotation_speed * delta
 
 func _physics_process(delta):
-	# Add gravity to the vertical velocity
-	if !is_on_floor():
-		velocity.y += gravity * delta
+	# Apply horizontal velocity
+	velocity.x = velocity_x
 
-	# Calculate the angle of movement for the arc effect
-	var angle = current_velocity_x * TURN_ANGLE * delta
+	# Apply gravity for vertical drop
+	velocity.y = gravity
 
-	# Update the horizontal velocity to create a smooth arc
-	velocity.x = current_velocity_x * cos(angle)
-	velocity.y += current_velocity_x * sin(angle)
-
-	# Move the character
+	# Move the ball
 	move_and_slide()
+
+	# Adjust position based on velocity to simulate turning
+	var forward_movement = Vector2(-sin(rotation), cos(rotation)) * velocity.y * delta
+	global_position += forward_movement

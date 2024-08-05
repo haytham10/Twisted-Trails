@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b275mnkj4r81a"]
+[gd_scene load_steps=6 format=3 uid="uid://b275mnkj4r81a"]
 
 [ext_resource type="PackedScene" uid="uid://ddjkghmjwo3bg" path="res://scenes/ball.tscn" id="1_cysba"]
-[ext_resource type="Texture2D" uid="uid://df1yr8a22hkbv" path="res://assets/Background/Background.png" id="1_him0m"]
+[ext_resource type="Texture2D" uid="uid://b0iouc55ee051" path="res://assets/Background/Background.png" id="1_him0m"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_vvkdj"]
 [ext_resource type="PackedScene" uid="uid://dtsruvi2sijh8" path="res://scenes/tree.tscn" id="3_cildf"]
+[ext_resource type="PackedScene" uid="uid://dd0cfpjrhfbsi" path="res://scenes/finish_line.tscn" id="4_0dpk1"]
 
 [node name="Game" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_vvkdj")
 
 [node name="Backround" type="Sprite2D" parent="."]
 position = Vector2(3, 8820)
@@ -22,6 +26,7 @@ limit_right = 100
 limit_smoothed = true
 position_smoothing_enabled = true
 
+[node name="finish_line" parent="." instance=ExtResource("4_0dpk1")]
+position = Vector2(3, 16979)
+
 [node name="Tree" parent="." instance=ExtResource("3_cildf")]
-position = Vector2(-62, -156)
-scale = Vector2(0.435, 0.435)

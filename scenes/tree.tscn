@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtsruvi2sijh8"]
+[gd_scene load_steps=4 format=3 uid="uid://dtsruvi2sijh8"]
 
-[ext_resource type="Texture2D" uid="uid://djb5kiocsjx6w" path="res://assets/Props/tree1.png" id="1_u3yoo"]
+[ext_resource type="Texture2D" uid="uid://bwrbwv8kqvr0b" path="res://assets/Props/tree1.png" id="1_u3yoo"]
+[ext_resource type="Script" path="res://scripts/tree.gd" id="1_vcuhs"]
 
-[node name="Tree" type="Sprite2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_sdtwr"]
+radius = 12.0
+
+[node name="Tree" type="Area2D"]
+script = ExtResource("1_vcuhs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_u3yoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 35)
+shape = SubResource("CircleShape2D_sdtwr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

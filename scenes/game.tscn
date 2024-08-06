@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b275mnkj4r81a"]
+[gd_scene load_steps=6 format=3 uid="uid://b275mnkj4r81a"]
 
 [ext_resource type="PackedScene" uid="uid://ddjkghmjwo3bg" path="res://scenes/ball.tscn" id="1_cysba"]
 [ext_resource type="PackedScene" uid="uid://cvv05g6h6dcph" path="res://scenes/background.tscn" id="2_1l2sj"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_c2woj"]
 [ext_resource type="PackedScene" uid="uid://c5spxdmjjh1wa" path="res://scenes/killzone.tscn" id="3_e7bld"]
-[ext_resource type="Texture2D" uid="uid://cg3mxtydyndoe" path="res://assets/Props/tree1.png" id="4_q55it"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0irex"]
 
@@ -37,65 +36,3 @@ shape = SubResource("WorldBoundaryShape2D_0irex")
 position = Vector2(200, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_0irex")
-
-[node name="Trees" type="Node2D" parent="."]
-position = Vector2(-76, 203)
-scale = Vector2(0.5, 0.5)
-
-[node name="Tree1" type="Sprite2D" parent="Trees"]
-texture = ExtResource("4_q55it")
-
-[node name="Tree2" type="Sprite2D" parent="Trees"]
-position = Vector2(192, 128)
-texture = ExtResource("4_q55it")
-
-[node name="Tree3" type="Sprite2D" parent="Trees"]
-position = Vector2(362, -208)
-texture = ExtResource("4_q55it")
-
-[node name="Tree4" type="Sprite2D" parent="Trees"]
-position = Vector2(-16, -352)
-texture = ExtResource("4_q55it")
-
-[node name="Tree5" type="Sprite2D" parent="Trees"]
-position = Vector2(-64, 544)
-texture = ExtResource("4_q55it")
-
-[node name="Tree6" type="Sprite2D" parent="Trees"]
-position = Vector2(432, -48)
-texture = ExtResource("4_q55it")
-
-[node name="Tree7" type="Sprite2D" parent="Trees"]
-position = Vector2(306, 390)
-texture = ExtResource("4_q55it")
-
-[node name="Trees2" type="Node2D" parent="."]
-position = Vector2(101, 835)
-scale = Vector2(-0.5, 0.5)
-
-[node name="Tree1" type="Sprite2D" parent="Trees2"]
-texture = ExtResource("4_q55it")
-
-[node name="Tree2" type="Sprite2D" parent="Trees2"]
-position = Vector2(192, 128)
-texture = ExtResource("4_q55it")
-
-[node name="Tree3" type="Sprite2D" parent="Trees2"]
-position = Vector2(362, -208)
-texture = ExtResource("4_q55it")
-
-[node name="Tree4" type="Sprite2D" parent="Trees2"]
-position = Vector2(-16, -352)
-texture = ExtResource("4_q55it")
-
-[node name="Tree5" type="Sprite2D" parent="Trees2"]
-position = Vector2(-64, 544)
-texture = ExtResource("4_q55it")
-
-[node name="Tree6" type="Sprite2D" parent="Trees2"]
-position = Vector2(432, -48)
-texture = ExtResource("4_q55it")
-
-[node name="Tree7" type="Sprite2D" parent="Trees2"]
-position = Vector2(306, 390)
-texture = ExtResource("4_q55it")

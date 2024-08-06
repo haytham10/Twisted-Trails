@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd0cfpjrhfbsi"]
+[gd_scene load_steps=7 format=3 uid="uid://dd0cfpjrhfbsi"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0iixt"]
+[ext_resource type="Texture2D" uid="uid://ccfehottwp1nb" path="res://assets/Props/finish_text.png" id="1_77gwd"]
+[ext_resource type="Script" path="res://scripts/finish_line.gd" id="1_vuira"]
+[ext_resource type="Texture2D" uid="uid://pgoelsr7o6o5" path="res://assets/Props/finish.png" id="1_wxvgr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0f3o"]
+texture = ExtResource("1_wxvgr")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c82pf"]
+sources/0 = SubResource("TileSetAtlasSource_c0f3o")
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5sejf"]
+a = Vector2(430, 0)
+b = Vector2(-430, 0)
 
 [node name="finish_line" type="Area2D"]
+skew = 0.148353
+script = ExtResource("1_vuira")
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = SubResource("TileSet_c82pf")
+rendering_quadrant_size = 100
+format = 2
+layer_0/tile_data = PackedInt32Array(-6, 0, 0, -65536, 0, 0, -65530, 0, 0, -65524, 0, 0, -65518, 0, 0, -12, 0, 0, -18, 0, 0, -24, 0, 0, -65512, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -145)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_77gwd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("WorldBoundaryShape2D_0iixt")
+position = Vector2(15.6737, 73.3052)
+shape = SubResource("SegmentShape2D_5sejf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

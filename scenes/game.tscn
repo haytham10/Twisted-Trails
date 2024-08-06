@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b275mnkj4r81a"]
+[gd_scene load_steps=7 format=3 uid="uid://b275mnkj4r81a"]
 
 [ext_resource type="PackedScene" uid="uid://ddjkghmjwo3bg" path="res://scenes/ball.tscn" id="1_cysba"]
 [ext_resource type="PackedScene" uid="uid://cvv05g6h6dcph" path="res://scenes/background.tscn" id="2_1l2sj"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_c2woj"]
 [ext_resource type="PackedScene" uid="uid://c5spxdmjjh1wa" path="res://scenes/killzone.tscn" id="3_e7bld"]
+[ext_resource type="PackedScene" uid="uid://dtsruvi2sijh8" path="res://scenes/tree.tscn" id="5_nj066"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0irex"]
 
@@ -14,6 +15,7 @@ position = Vector2(199, 229)
 
 [node name="Ball" parent="." instance=ExtResource("1_cysba")]
 position = Vector2(0, -180)
+scale = Vector2(0.4, 0.4)
 
 [node name="Camera2D" type="Camera2D" parent="Ball"]
 offset = Vector2(0, 200)
@@ -27,6 +29,11 @@ script = ExtResource("3_c2woj")
 
 [node name="Killzone" parent="." instance=ExtResource("3_e7bld")]
 
+[node name="Tree" parent="Killzone" instance=ExtResource("5_nj066")]
+position = Vector2(55, 115)
+scale = Vector2(0.4, 0.4)
+script = null
+
 [node name="left_border" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(-161, 0)
 rotation = 1.5708
@@ -35,4 +42,8 @@ shape = SubResource("WorldBoundaryShape2D_0irex")
 [node name="right_border" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(200, 0)
 rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_0irex")
+
+[node name="right_border2" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 800)
 shape = SubResource("WorldBoundaryShape2D_0irex")

@@ -17,7 +17,6 @@ a = Vector2(430, 0)
 b = Vector2(-430, 0)
 
 [node name="finish_line" type="Area2D"]
-skew = 0.148353
 script = ExtResource("1_vuira")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -25,7 +24,7 @@ texture_filter = 1
 tile_set = SubResource("TileSet_c82pf")
 rendering_quadrant_size = 100
 format = 2
-layer_0/tile_data = PackedInt32Array(-6, 0, 0, -65536, 0, 0, -65530, 0, 0, -65524, 0, 0, -65518, 0, 0, -12, 0, 0, -18, 0, 0, -24, 0, 0, -65512, 0, 0)
+layer_0/tile_data = PackedInt32Array(-6, 0, 0, -65536, 0, 0, -65530, 0, 0, -65524, 0, 0, -65518, 0, 0, -12, 0, 0, -18, 0, 0, -24, 0, 0, -65512, 0, 0, -65506, 0, 0, -65500, 0, 0, -30, 0, 0, -36, 0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -145)

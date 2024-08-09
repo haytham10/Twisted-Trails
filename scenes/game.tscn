@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ddjkghmjwo3bg" path="res://scenes/ball.tscn" id="1_cysba"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vvkdj"]
-[ext_resource type="PackedScene" path="res://scenes/background.tscn" id="2_1l2sj"]
+[ext_resource type="PackedScene" uid="uid://kyowmi8ax12b" path="res://scenes/background.tscn" id="2_1l2sj"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_c2woj"]
 [ext_resource type="PackedScene" uid="uid://c5spxdmjjh1wa" path="res://scenes/killzone.tscn" id="3_e7bld"]
 [ext_resource type="PackedScene" uid="uid://dd0cfpjrhfbsi" path="res://scenes/finish_line.tscn" id="4_0dpk1"]
@@ -19,7 +19,7 @@ script = ExtResource("1_vvkdj")
 
 [node name="Ball" parent="." instance=ExtResource("1_cysba")]
 position = Vector2(0, -180)
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.45, 0.45)
 
 [node name="Camera2D" type="Camera2D" parent="Ball"]
 offset = Vector2(0, 200)
@@ -30,6 +30,12 @@ limit_right = 400
 limit_smoothed = true
 position_smoothing_speed = 15.0
 script = ExtResource("3_c2woj")
+
+[node name="Tree" parent="." instance=ExtResource("5_nj066")]
+texture_filter = 1
+position = Vector2(79, -40)
+scale = Vector2(0.85, 0.85)
+script = ExtResource("6_3kgfh")
 
 [node name="Killzone" parent="." instance=ExtResource("3_e7bld")]
 
@@ -43,12 +49,8 @@ position = Vector2(200, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_0irex")
 
-[node name="Tree" parent="." instance=ExtResource("5_nj066")]
-position = Vector2(79, -40)
-scale = Vector2(0.6, 0.6)
-script = ExtResource("6_3kgfh")
-
 [node name="finish_line" parent="." instance=ExtResource("4_0dpk1")]
 show_behind_parent = true
-position = Vector2(8, 1200)
-scale = Vector2(0.51, 0.51)
+position = Vector2(8, 3000)
+scale = Vector2(0.43, 0.43)
+skew = 0.0314159

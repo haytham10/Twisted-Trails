@@ -13,10 +13,10 @@ func calc_dist(node_a, node_b):
 
 func _ready():
 	var distance = calc_dist(ball, finish_line)
-	#if distance != -1:
-		#print("Initial distance: ", distance)
+	if distance != -1:
+		print("Initial distance: ", distance)
 
 func _process(_delta):
 	var distance = calc_dist(ball, finish_line)
-	#if distance != -1:
-		#print(distance)
+	if distance != -1:
+		print(distance)

@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bylg6if23cdth"]
+[gd_scene load_steps=3 format=3 uid="uid://bylg6if23cdth"]
 
-[ext_resource type="Texture2D" uid="uid://cg3mxtydyndoe" path="res://assets/Props/tree1.png" id="1_u3yoo"]
-[ext_resource type="Script" path="res://scripts/tree.gd" id="1_vcuhs"]
+[ext_resource type="Texture2D" uid="uid://kxk6rhrgcpbp" path="res://assets/Props/tree2.png" id="2_yctiq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sdtwr"]
-radius = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lw5u"]
+size = Vector2(9, 20)
 
 [node name="Tree" type="Area2D"]
-script = ExtResource("1_vcuhs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u3yoo")
+texture_filter = 1
+texture = ExtResource("2_yctiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 35)
-shape = SubResource("CircleShape2D_sdtwr")
+visible = false
+position = Vector2(-0.5, 30)
+shape = SubResource("RectangleShape2D_2lw5u")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3

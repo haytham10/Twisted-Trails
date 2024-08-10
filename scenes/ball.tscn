@@ -1,18 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddjkghmjwo3bg"]
+[gd_scene load_steps=7 format=3 uid="uid://ddjkghmjwo3bg"]
 
 [ext_resource type="Texture2D" uid="uid://qhj5hc3ktxqu" path="res://assets/Player/ball.png" id="1_gocb1"]
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_tq7vi"]
+[ext_resource type="Script" path="res://scripts/Trail.gd" id="3_ckua8"]
+
+[sub_resource type="Curve" id="Curve_ctr5w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3l6wq"]
+colors = PackedColorArray(0.470588, 0.945098, 1, 1, 0.164706, 0.415686, 0.843137, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uxpb"]
 radius = 29.9304
 
 [node name="Ball" type="CharacterBody2D"]
-scale = Vector2(0.605, 0.605)
 script = ExtResource("1_tq7vi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_gocb1")
+
+[node name="Trail" type="Line2D" parent="."]
+show_behind_parent = true
+top_level = true
+z_index = -1
+width_curve = SubResource("Curve_ctr5w")
+gradient = SubResource("Gradient_3l6wq")
+script = ExtResource("3_ckua8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

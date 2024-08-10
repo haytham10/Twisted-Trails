@@ -15,8 +15,6 @@
 position = Vector2(199, 229)
 script = ExtResource("1_vvkdj")
 
-[node name="Background" parent="." instance=ExtResource("2_1l2sj")]
-
 [node name="Ball" parent="." instance=ExtResource("1_cysba")]
 position = Vector2(0, -180)
 scale = Vector2(0.45, 0.45)
@@ -30,6 +28,8 @@ limit_right = 400
 limit_smoothed = true
 position_smoothing_speed = 15.0
 script = ExtResource("3_c2woj")
+
+[node name="Background" parent="." instance=ExtResource("2_1l2sj")]
 
 [node name="Tree" parent="." instance=ExtResource("5_nj066")]
 texture_filter = 1

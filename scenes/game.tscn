@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b275mnkj4r81a"]
+[gd_scene load_steps=9 format=3 uid="uid://b275mnkj4r81a"]
 
 [ext_resource type="PackedScene" uid="uid://ddjkghmjwo3bg" path="res://scenes/ball.tscn" id="1_cysba"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vvkdj"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c5spxdmjjh1wa" path="res://scenes/killzone.tscn" id="3_e7bld"]
 [ext_resource type="PackedScene" uid="uid://dd0cfpjrhfbsi" path="res://scenes/finish_line.tscn" id="4_0dpk1"]
 [ext_resource type="PackedScene" uid="uid://bylg6if23cdth" path="res://scenes/tree.tscn" id="5_nj066"]
-[ext_resource type="Script" path="res://scripts/killzone.gd" id="6_3kgfh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0irex"]
 
@@ -35,7 +34,6 @@ script = ExtResource("3_c2woj")
 texture_filter = 1
 position = Vector2(79, -40)
 scale = Vector2(0.85, 0.85)
-script = ExtResource("6_3kgfh")
 
 [node name="Killzone" parent="." instance=ExtResource("3_e7bld")]
 

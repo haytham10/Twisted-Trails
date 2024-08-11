@@ -51,6 +51,6 @@ shape = SubResource("WorldBoundaryShape2D_0irex")
 
 [node name="finish_line" parent="." instance=ExtResource("4_0dpk1")]
 show_behind_parent = true
-position = Vector2(8, 3000)
+position = Vector2(8.00002, 2472)
 scale = Vector2(0.43, 0.43)
 skew = 0.0314159

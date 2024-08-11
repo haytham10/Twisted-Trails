@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bylg6if23cdth"]
 
-[ext_resource type="Texture2D" uid="uid://kxk6rhrgcpbp" path="res://assets/Props/tree2.png" id="2_yctiq"]
+[ext_resource type="Texture2D" uid="uid://cvrn5he7g2vc8" path="res://assets/Props/tree2.png" id="2_yctiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2lw5u"]
-size = Vector2(9, 20)
+size = Vector2(9, 11)
 
 [node name="Tree" type="Area2D"]
 
@@ -12,8 +12,7 @@ texture_filter = 1
 texture = ExtResource("2_yctiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, 30)
+position = Vector2(-0.5, 34.5)
 shape = SubResource("RectangleShape2D_2lw5u")
 
 [node name="Timer" type="Timer" parent="."]

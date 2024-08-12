@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ddjkghmjwo3bg"]
 
-[ext_resource type="Texture2D" uid="uid://bxnfsqcjop28e" path="res://assets/Player/ball.png" id="1_gocb1"]
+[ext_resource type="Texture2D" uid="uid://qhj5hc3ktxqu" path="res://assets/Player/ball.png" id="1_gocb1"]
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_tq7vi"]
 [ext_resource type="Script" path="res://scripts/Trail.gd" id="3_ckua8"]
 

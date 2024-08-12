@@ -5,7 +5,12 @@ extends Node2D
 @onready var finish_line = $finish_line
 var tree_scene_path = "res://scenes/tree.tscn"
 @export var tree_scene: PackedScene
- # Maximum y position for tree spawn
+
+@onready var ui = $UI
+@onready var progress_bar = ui.get_node("ProgressBar")
+
+var total_distance: float = 0.0
+var traveled_distance: float = 0.0
 
 func calc_dist(node_a, node_b):
 	if node_a and node_b:
@@ -51,8 +56,11 @@ func spawn_trees():
 		min_y += 75
 
 func _ready():
-	var distance = calc_dist(ball, finish_line)
+	total_distance = calc_dist(ball, finish_line)
 	spawn_trees()
 
 func _process(_delta):
-	var distance = calc_dist(ball, finish_line)
+	traveled_distance = calc_dist(ball, finish_line)
+	var progress = traveled_distance / total_distance
+	progress_bar.value = progress * 100
+

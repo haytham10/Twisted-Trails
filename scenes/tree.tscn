@@ -1,19 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bylg6if23cdth"]
+[gd_scene load_steps=4 format=3 uid="uid://bylg6if23cdth"]
 
-[ext_resource type="Texture2D" uid="uid://kxk6rhrgcpbp" path="res://assets/Props/tree2.png" id="2_yctiq"]
+[ext_resource type="Script" path="res://scripts/killzone.gd" id="1_y3sx3"]
+[ext_resource type="Texture2D" uid="uid://cucjhr10dwjd7" path="res://assets/Props/tree2.png" id="2_yctiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2lw5u"]
-size = Vector2(9, 20)
+size = Vector2(8, 22)
 
 [node name="Tree" type="Area2D"]
+script = ExtResource("1_y3sx3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_yctiq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, 30)
+position = Vector2(0, 29)
+scale = Vector2(0.91, 0.91)
 shape = SubResource("RectangleShape2D_2lw5u")
 
 [node name="Timer" type="Timer" parent="."]

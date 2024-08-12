@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var max_speed: float = 200.0
 @export var gravity: float = 200.0
+@onready var animation_player = $AnimationPlayer
 
 var moving_left: bool = false
 var moving_right: bool = false
@@ -43,5 +44,16 @@ func _physics_process(_delta):
 		velocity.y = gravity
 		move_and_slide()
 		
+func play_death_animation():
+	stopped = true
+	velocity = Vector2.ZERO  # Stop the ball's movement
+	animation_player.play("Death")
+	animation_player.connect("animation_finished", Callable(self, "_on_death_animation_finished"))
+
+func _on_death_animation_finished(anim_name: String):
+	if anim_name == "Death":
+		get_tree().reload_current_scene()
+		
+
 func stop_ball():
 	stopped = true

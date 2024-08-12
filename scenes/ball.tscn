@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddjkghmjwo3bg"]
+[gd_scene load_steps=11 format=3 uid="uid://ddjkghmjwo3bg"]
 
 [ext_resource type="Texture2D" uid="uid://bxnfsqcjop28e" path="res://assets/Player/ball.png" id="1_gocb1"]
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_tq7vi"]
@@ -13,6 +13,101 @@ colors = PackedColorArray(0.470588, 0.945098, 1, 1, 0.164706, 0.415686, 0.843137
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uxpb"]
 radius = 29.9304
+
+[sub_resource type="Animation" id="Animation_0q7s1"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.37045]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(1e-05, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_4phdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ras31"]
+_data = {
+"Death": SubResource("Animation_0q7s1"),
+"RESET": SubResource("Animation_4phdj")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bwyhp"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 10, 1)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 10.0
+angular_velocity_max = 20.0
+radial_velocity_max = 100.0
+gravity = Vector3(0, 300, 0)
+linear_accel_max = 100.0
 
 [node name="Ball" type="CharacterBody2D"]
 script = ExtResource("1_tq7vi")
@@ -34,3 +129,13 @@ visible = false
 position = Vector2(-1.848, -2.271)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_5uxpb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ras31")
+}
+
+[node name="DeathParticles(w_i_p)" type="GPUParticles2D" parent="."]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_bwyhp")
+visibility_rect = Rect2(0.320502, -39.2817, 315.001, 335.288)

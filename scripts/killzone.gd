@@ -7,8 +7,10 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Ball":
+		# Trigger the death animation
+		body.play_death_animation()
 		timer.start()
 
 func _on_timer_timeout():
+	Engine.time_scale = 1
 	get_tree().reload_current_scene()
-	

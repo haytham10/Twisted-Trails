@@ -25,14 +25,25 @@ func spawn_trees():
 	var max_y = finish_line.global_position.y - 300
 	while (min_y < max_y - 100):
 		# Set the tree's position randomly within the specified x and y range
-		var i = 0;
+		var i = 0
 		var last_pos_x = min_x
 		var trees_per_line = randi_range(2, 5)
 		var tree_positions = []
 		while (i < trees_per_line):
 			var tree = tree_scene.instantiate()
+			
+			# Set random position
 			var pos_x = randf_range(min_x, max_x)
 			tree.position = Vector2(pos_x, min_y)
+			
+			var random_scale = randf_range(0.55, 0.85)
+			tree.scale = Vector2(random_scale, random_scale)
+			
+			# Adjust the size of the CollisionShape2D based on the new scale
+			var collision_shape = tree.get_node("CollisionShape2D")
+			if collision_shape and collision_shape.shape is RectangleShape2D:
+				collision_shape.shape.extents *= random_scale
+				
 			tree_positions.append(pos_x)
 			i += 1
 			add_child(tree)
@@ -45,4 +56,3 @@ func _ready():
 
 func _process(_delta):
 	var distance = calc_dist(ball, finish_line)
-

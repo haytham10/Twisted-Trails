@@ -14,7 +14,10 @@ func calc_dist(node_a, node_b):
 	if node_a and node_b:
 		var position_a = node_a.global_position
 		var position_b = node_b.global_position
-		return position_a.distance_to(position_b)
+		var distance = position_a.distance_to(position_b)
+		if distance <= 5.0:  # Threshold to consider reaching the finish line
+			return 0.0
+		return round(distance)
 	return -1  # Return -1 if either node is null
 
 # Variables for tree generation
@@ -55,17 +58,21 @@ func spawn_trees():
 func _ready():
 	initial_distance = calc_dist(ball, finish_line)
 	distance_label.text = str(0)
-	spawn_trees()
+	#spawn_trees()
 
 func _process(_delta):
 	if initial_distance <= 0:
 		return
 	
-	var current_distance = calc_dist(ball, finish_line) + 10
-	var progress = clamp(1.0 - (current_distance / initial_distance), 0.0, 1.0) * 100.0
+	var current_distance = calc_dist(ball, finish_line)
 	
-	if progress_bar.value < 99:
+	var progress = clamp(1.0 - (current_distance / initial_distance), 0.0, 1.0) * 100.0
+
+	if (progress_bar.value < 97):
 		progress_bar.value = progress
+	else:
+		progress_bar.value = 100
+	
 		
 	var distance = initial_distance - current_distance;
 	

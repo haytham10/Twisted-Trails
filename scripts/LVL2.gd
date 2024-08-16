@@ -32,7 +32,7 @@ func spawn_trees():
 	while (min_y < max_y - 100):
 		# Set the tree's position randomly within the specified x and y range
 		var i = 0
-		var trees_per_line = randi_range(2, 5)
+		var trees_per_line = randi_range(3, 6)
 		var tree_positions = []
 		while (i < trees_per_line):
 			var tree = tree_scene.instantiate()
@@ -41,7 +41,7 @@ func spawn_trees():
 			var pos_x = randf_range(min_x, max_x)
 			tree.position = Vector2(pos_x, min_y)
 			
-			var random_scale = randf_range(0.55, 0.85)
+			var random_scale = randf_range(0.60, 0.90)
 			tree.scale = Vector2(random_scale, random_scale)
 			
 			# Adjust the size of the CollisionShape2D based on the new scale

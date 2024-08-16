@@ -13,7 +13,7 @@ func _ready():
 	# Clear any existing points
 	clear_points()
 
-func _process(delta):
+func _process(_delta):
 	# Get the current position of the ball's parent node (i.e., the ball)
 	var ball_position = get_parent().global_position
 	

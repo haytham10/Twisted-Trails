@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://b275mnkj4r81a"]
+
+[ext_resource type="PackedScene" uid="uid://ddjkghmjwo3bg" path="res://scenes/ball.tscn" id="1_cysba"]
+[ext_resource type="Script" path="res://scripts/LVL1.gd" id="1_vvkdj"]
+[ext_resource type="PackedScene" uid="uid://kyowmi8ax12b" path="res://scenes/background.tscn" id="2_1l2sj"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_c2woj"]
+[ext_resource type="PackedScene" uid="uid://c5spxdmjjh1wa" path="res://scenes/killzone.tscn" id="3_e7bld"]
+[ext_resource type="PackedScene" uid="uid://dd0cfpjrhfbsi" path="res://scenes/finish_line.tscn" id="4_0dpk1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0irex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0rbb"]
+bg_color = Color(0.43134, 0.43134, 0.43134, 0.313726)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kujsd"]
+bg_color = Color(0.258824, 0.670588, 0.682353, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="LVL1" type="Node2D"]
+position = Vector2(199, 229)
+script = ExtResource("1_vvkdj")
+
+[node name="Ball" parent="." instance=ExtResource("1_cysba")]
+position = Vector2(0, -65)
+scale = Vector2(0.45, 0.45)
+
+[node name="Camera2D" type="Camera2D" parent="Ball"]
+offset = Vector2(0, 200)
+zoom = Vector2(1.1, 1.1)
+process_callback = 0
+limit_left = 400
+limit_right = 400
+limit_smoothed = true
+position_smoothing_speed = 15.0
+script = ExtResource("3_c2woj")
+
+[node name="Background" parent="." instance=ExtResource("2_1l2sj")]
+
+[node name="Killzone" parent="." instance=ExtResource("3_e7bld")]
+
+[node name="left_border" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-161, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_0irex")
+
+[node name="right_border" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(200, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_0irex")
+
+[node name="finish_line" parent="." instance=ExtResource("4_0dpk1")]
+show_behind_parent = true
+position = Vector2(8.00002, 2472)
+scale = Vector2(0.43, 0.43)
+skew = 0.0314159
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = 29.0
+offset_right = 117.0
+offset_bottom = 52.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_q0rbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kujsd")
+rounded = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="UI/ProgressBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_right = 28.0
+offset_bottom = 23.0
+grow_horizontal = 2

@@ -3,14 +3,12 @@ extends Node2D
 @onready var killzone = $Killzone
 @onready var ball = $Ball
 @onready var finish_line = $finish_line
+@onready var progress_bar = $UI/ProgressBar
+@onready var distance_label = progress_bar.get_node("Label")  # Adjust the path to your label node
+
+var initial_distance: float = 0.0
 var tree_scene_path = "res://scenes/tree.tscn"
 @export var tree_scene: PackedScene
-
-@onready var ui = $UI
-@onready var progress_bar = ui.get_node("ProgressBar")
-
-var total_distance: float = 0.0
-var traveled_distance: float = 0.0
 
 func calc_dist(node_a, node_b):
 	if node_a and node_b:
@@ -31,7 +29,6 @@ func spawn_trees():
 	while (min_y < max_y - 100):
 		# Set the tree's position randomly within the specified x and y range
 		var i = 0
-		var last_pos_x = min_x
 		var trees_per_line = randi_range(2, 5)
 		var tree_positions = []
 		while (i < trees_per_line):
@@ -56,11 +53,21 @@ func spawn_trees():
 		min_y += 75
 
 func _ready():
-	total_distance = calc_dist(ball, finish_line)
+	initial_distance = calc_dist(ball, finish_line)
+	distance_label.text = str(0)
 	spawn_trees()
 
 func _process(_delta):
-	traveled_distance = calc_dist(ball, finish_line)
-	var progress = traveled_distance / total_distance
-	progress_bar.value = progress * 100
-
+	if initial_distance <= 0:
+		return
+	
+	var current_distance = calc_dist(ball, finish_line) + 10
+	var progress = clamp(1.0 - (current_distance / initial_distance), 0.0, 1.0) * 100.0
+	
+	if progress_bar.value < 99:
+		progress_bar.value = progress
+		
+	var distance = initial_distance - current_distance;
+	
+	if (distance > 0):
+		distance_label.text = str(round(distance))
